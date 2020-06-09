@@ -13,7 +13,7 @@ class ChoiceInline(admin.TabularInline):
 class QuestionAdmin(admin.ModelAdmin):
     # This is a tuple. Takes in name, object. Requires hanging comma at end.
     fieldsets = [
-        ( None, {'fields': ['question']} ), 
+        ( None, {'fields': ['question_text']} ), 
         ('Date Information', {'fields': ['pub_date'], 'classes': ['collapse']}),
     ] 
     inlines = [ ChoiceInline ]
