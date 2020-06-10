@@ -6,7 +6,7 @@ In command prompt:
     -  django-admin startproject pyPoll 
     -  cd pyPoll 
     -  python3 manage.py runserver 3001  (this will create db.sqlite3 file)
-    -  python3 manage.py startapp pyPoll
+    -  python3 manage.py startapp pyPoll (this is a folder with mvc's and all)
 
 Other:
     -  python3 manage.py makemigrations polls 

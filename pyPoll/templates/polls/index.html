@@ -8,7 +8,7 @@
                 <div class='card-body'>
                     <p> {{ question.question_text }}</p>
                     <a href="{% url 'polls:detail' question.id %}" class='btn btn-primary btn-sm'>Vote</a>
-                    <a href="{% url 'polls:detail' question.id %}" class='btn btn-secondary btn-sm'>See Results</a>
+                    <a href="{% url 'polls:results' question.id %}" class='btn btn-secondary btn-sm'>See Results</a>
                 </div>
             </div>
         {% endfor %}

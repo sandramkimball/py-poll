@@ -7,6 +7,9 @@ verify_ssl = true
 
 [packages]
 django = "*"
+gunicorn = "*"
+vercel = "*"
+zingchart = "*"
 
 [requires]
 python_version = "3.8"

@@ -25,7 +25,7 @@ SECRET_KEY = 'k)^xom_(#e0wc*d_(u(k&6&6pv&331y$(^^$8z$y@gzcv2nr#)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.now.sh', '*']
 
 
 # Application definition

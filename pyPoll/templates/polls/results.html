@@ -1,15 +1,67 @@
 {% extends 'base.html' %}
 {% block content %}
+
+<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <h1 class="mb-5 text-center">{{ question.question_text }}</h1>
+<div  style='margin-bottom: 40px;'>
+	<a class="btn btn-secondary" href="{% url 'polls:index' %}">Back</a>
+	<a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Vote</a>
+</div>
 
-<ul class="list-group mb-5">
-	{% for choice in question.choice_set.all %}
-	<li class="list-group-item">
-		{{ choice.choice_text }}  <span class="badge badge-success float-right">{{ choice.votes }} vote{{ choice.votes | pluralize }}</span>
-	</li>
-	{% endfor %}
-</ul>
+<section >
+	<ul class="list-group mb-5">
+		{% for choice in question.choice_set.all %}
+		<li class="list-group-item">
+			{{ choice.choice_text }}  <span class="badge badge-success float-right">{{ choice.votes }} vote{{ choice.votes | pluralize }}</span>
+		</li>
+		{% endfor %}
+	</ul>
 
-<a class="btn btn-secondary" href="{% url 'polls:index' %}">Back To Polls</a>
-<a class="btn btn-dark" href="{% url 'polls:detail' question.id %}">Vote again?</a>
+	<div id='pollChart'></div>
+	<script>
+		var state = {
+			'items': [],
+			'values': []
+		}
+		var objId = '{{question.id}}'
+
+		$.ajax({
+			method: 'GET',
+			url:  `/polls/resultsdata/${objId}`,
+			success: function(res){
+				res.map(item=> {
+					let key = Object.keys(item)
+					let val = Object.values(item)
+					state.items.push(key[0])
+					state.values.push(val[0])
+				})
+				buildChart()
+			}
+		})
+
+		function buildChart(){
+			var chartData = {
+				"type":'bar',
+				'scale-x': {
+					'values': state.items
+				},
+				'series': [{
+					'values': state.values,
+					backgroundColor: '#8ee9de'
+				}]
+			}
+			zingchart.render({
+				id: 'pollChart',
+				data: chartData,
+			})
+		}
+		
+
+	</script>
+</section>
+
+
+
+
 {% endblock %}
