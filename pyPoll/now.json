@@ -1,0 +1,13 @@
+{
+    "version": 2,
+    "name": "py-poll",
+    "builds": [
+        { "src": "*.py", "use": "@now/python" },
+        { "src": "*.html", "use": "@now/static" }
+    ],
+    "routes": [{
+        "src": "/pypoll/(.*)",
+        "dest": "./pypoll/wsgi.py"
+    }]
+}
+
